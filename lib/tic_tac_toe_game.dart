@@ -14,14 +14,27 @@ class _TicTacToeState extends State<TicTacToe> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
-          title: const Center(
-            child: Text(
-              "Tic Tac Toe",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-          )),
+        backgroundColor: Colors.lightBlue,
+        title: const Center(
+          child: Text(
+            "Tic Tac Toe",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+        ),
+        actions: [
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const TicTacToe())));
+              },
+              child: Icon(
+                Icons.refresh,
+                color: Colors.black,
+              ))
+        ],
+      ),
       body: GridView.builder(
         shrinkWrap: true,
         itemCount: 9,
