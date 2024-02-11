@@ -9,7 +9,7 @@ class TicTacToe extends StatefulWidget {
 
 class _TicTacToeState extends State<TicTacToe> {
   bool isCompleted = false;
-  List<String> game = List.filled(9, "");
+  List<String> game = List.filled(9, '');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,7 @@ class _TicTacToeState extends State<TicTacToe> {
                     MaterialPageRoute(
                         builder: ((context) => const TicTacToe())));
               },
-              child: Icon(
+              child: const Icon(
                 Icons.refresh,
                 color: Colors.black,
               ))
@@ -46,14 +46,14 @@ class _TicTacToeState extends State<TicTacToe> {
             onTap: () {
               if (game[index].isEmpty) {
                 setState(() {
-                  game[index] = isCompleted ? 'X' : 'O';
+                  game[index] = isCompleted ? 'X' : '';
                 });
               }
             },
             onDoubleTap: () {
               if (game[index].isEmpty) {
                 setState(() {
-                  game[index] = isCompleted ? 'O' : 'X';
+                  game[index] = isCompleted ? 'O' : '';
                 });
               }
             },
