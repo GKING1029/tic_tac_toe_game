@@ -46,14 +46,14 @@ class _TicTacToeState extends State<TicTacToe> {
             onTap: () {
               if (game[index].isEmpty) {
                 setState(() {
-                  game[index] = isCompleted ? 'X' : '';
+                  game[index] = isCompleted ? '' : 'O';
                 });
               }
             },
             onDoubleTap: () {
               if (game[index].isEmpty) {
                 setState(() {
-                  game[index] = isCompleted ? 'O' : '';
+                  game[index] = isCompleted ? '' : 'X';
                 });
               }
             },
