@@ -10,6 +10,51 @@ class TicTacToe extends StatefulWidget {
 class _TicTacToeState extends State<TicTacToe> {
   List<String> game = List.filled(9, '');
   bool firstPlayer = true;
+  void _showDialogFunction() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter alertState) {
+            return AlertDialog(
+              backgroundColor: Colors.blue,
+              title: const Text("Do you want to start a new game?"),
+              content: const Column(
+                mainAxisSize: MainAxisSize.min,
+              ),
+              actions: [
+                Center(
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          shape:
+                              MaterialStatePropertyAll<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5))),
+                          fixedSize:
+                              const MaterialStatePropertyAll(Size(90, 30)),
+                          backgroundColor:
+                              const MaterialStatePropertyAll(Colors.black)),
+                      onPressed: () {
+                        game = List.filled(9, '');
+                        firstPlayer != firstPlayer;
+                        Navigator.of(context).pop();
+
+                        setState(() {});
+                      },
+                      child: const Center(
+                          child: Text(
+                        "Yes",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.blue),
+                      ))),
+                )
+              ],
+            );
+          });
+        });
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +66,7 @@ class _TicTacToeState extends State<TicTacToe> {
           child: Center(
               child: Text(
             firstPlayer ? 'O' : 'X',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           )),
         ),
         title: const Center(
@@ -33,17 +78,14 @@ class _TicTacToeState extends State<TicTacToe> {
         actions: [
           GestureDetector(
               onTap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: ((context) => const TicTacToe())));
-                game = List.filled(9, '');
-                firstPlayer != firstPlayer;
-                setState(() {});
+                _showDialogFunction();
               },
-              child: const Icon(
-                Icons.refresh,
-                color: Colors.black,
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.refresh,
+                  color: Colors.black,
+                ),
               ))
         ],
       ),
