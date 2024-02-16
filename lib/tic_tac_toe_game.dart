@@ -16,7 +16,14 @@ class _TicTacToeState extends State<TicTacToe> {
       backgroundColor: Colors.blue,
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
-        leading: Text(""),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+              child: Text(
+            firstPlayer ? 'O' : 'X',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          )),
+        ),
         title: const Center(
           child: Text(
             "Tic Tac Toe",
@@ -31,7 +38,7 @@ class _TicTacToeState extends State<TicTacToe> {
                 //     MaterialPageRoute(
                 //         builder: ((context) => const TicTacToe())));
                 game = List.filled(9, '');
-                firstPlayer = !firstPlayer;
+                firstPlayer != firstPlayer;
                 setState(() {});
               },
               child: const Icon(
@@ -57,7 +64,6 @@ class _TicTacToeState extends State<TicTacToe> {
                   game[index] = 'X';
                   firstPlayer = true;
                 }
-                checkWinner();
                 setState(() {});
               }
             },
@@ -78,6 +84,4 @@ class _TicTacToeState extends State<TicTacToe> {
       ),
     );
   }
-
-  checkWinner() {}
 }
