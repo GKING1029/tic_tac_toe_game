@@ -8,14 +8,15 @@ class TicTacToe extends StatefulWidget {
 }
 
 class _TicTacToeState extends State<TicTacToe> {
-  bool isCompleted = false;
   List<String> game = List.filled(9, '');
+  bool firstPlayer = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
+        leading: Text(""),
         title: const Center(
           child: Text(
             "Tic Tac Toe",
@@ -25,10 +26,13 @@ class _TicTacToeState extends State<TicTacToe> {
         actions: [
           GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => const TicTacToe())));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: ((context) => const TicTacToe())));
+                game = List.filled(9, '');
+                firstPlayer = !firstPlayer;
+                setState(() {});
               },
               child: const Icon(
                 Icons.refresh,
@@ -44,17 +48,17 @@ class _TicTacToeState extends State<TicTacToe> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
+              print("game[index] ${game[index]}");
               if (game[index].isEmpty) {
-                setState(() {
-                  game[index] = isCompleted ? '' : 'O';
-                });
-              }
-            },
-            onDoubleTap: () {
-              if (game[index].isEmpty) {
-                setState(() {
-                  game[index] = isCompleted ? '' : 'X';
-                });
+                if (firstPlayer) {
+                  game[index] = 'O';
+                  firstPlayer = false;
+                } else {
+                  game[index] = 'X';
+                  firstPlayer = true;
+                }
+                checkWinner();
+                setState(() {});
               }
             },
             child: Container(
@@ -74,4 +78,6 @@ class _TicTacToeState extends State<TicTacToe> {
       ),
     );
   }
+
+  checkWinner() {}
 }
